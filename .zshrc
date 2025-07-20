@@ -98,7 +98,7 @@ setopt EXTENDED_HISTORY
 
 # ─── Optional: System info on shell startup (neofetch) ──────────────────
 if command -v neofetch &>/dev/null; then
-  neofetch --ascii_distro macos --disable model
+  neofetch --disable model
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
