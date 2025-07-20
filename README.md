@@ -108,6 +108,57 @@ Or use your AUR helper.
 - Copy `.zshrc` from this repo to your `$HOME` directory.
 - Optionally copy `.p10k.zsh.example` to `~/.p10k.zsh`, and run `p10k configure`.
 
+---
+
+## 📥 How to Replace Your .zshrc With the Version From This Repo (e.g., on a Server/WSL)
+
+SSH into your remote machine (skip this step if you’re working locally):
+
+```bash
+ssh youruser@your-remote-server
+```
+
+Back up your existing .zshrc:
+
+```bash
+cp ~/.zshrc ~/.zshrc.backup.$(date +'%Y%m%d%H%M%S')
+```
+
+Download the new .zshrc from GitHub:
+
+```bash
+curl -o ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzsh/main/.zshrc
+```
+
+Tip: To use wget instead, try
+
+```bash
+wget -O ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzsh/main/.zshrc
+```
+
+Verify the update:
+
+```bash
+head -20 ~/.zshrc
+```
+
+Apply changes (reload config immediately):
+
+```bash
+source ~/.zshrc
+```
+
+To restore your previous settings:
+If needed, simply run
+
+```bash
+cp ~/.zshrc.backup.YYYYMMDDHHMMSS ~/.zshrc
+source ~/.zshrc
+```
+(change the timestamp as appropriate).
+
+---
+
 Source your shell:
 ```bash
 source ~/.zshrc
