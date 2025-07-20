@@ -1,6 +1,9 @@
-# Ultimate Cross-Platform Zsh Terminal (Production-Ready)
+# HyperZsh
 
 A blazing-fast, developer-centric terminal with Oh My Zsh, Powerlevel10k, Nerd Font, fzf, and the best Zsh plugins—fully compatible across macOS, Ubuntu/Debian, Arch/Manjaro, and WSL2.
+
+**GitHub:** [git@github.com:barunTayenjam/hyperzsh.git](https://github.com/barunTayenjam/hyperzsh)  
+**Author:** [barunTayenjam](https://github.com/barunTayenjam)
 
 ## Features
 - **Powerlevel10k**: Ultra-fast, beautiful, and customizable prompt.
