@@ -97,17 +97,26 @@ Check for new CLI tool/plugin versions every few weeks.
 ---
 
 ## Recommended Plugin Use Order (for compatibility)
-```text
+The order of plugins matters, especially for `zsh-syntax-highlighting` and `zsh-autocomplete`. For best results, load them at the end.
+
+```zsh
 plugins=(
+  # Base plugins
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting     # Always near/at end
   sudo
   history
+
+  # Utility and navigation plugins
   fzf
   direnv
   zsh-interactive-cd
-  zsh-autocomplete            # Prefer at the end
+
+  # Must be loaded after other plugins for full functionality
+  zsh-autosuggestions
+
+  # Must be loaded at the end, in this specific order
+  zsh-syntax-highlighting
+  zsh-autocomplete
 )
 ```
 

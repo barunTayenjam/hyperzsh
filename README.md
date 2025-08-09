@@ -105,8 +105,8 @@ Or use your AUR helper.
 - Set your Windows Terminal Profile to "MesloLGS NF".
 
 ### 7. Configure your Terminal
-- Copy `.zshrc` from this repo to your `$HOME` directory.
-- Optionally copy `.p10k.zsh.example` to `~/.p10k.zsh`, and run `p10k configure`.
+- Copy `.zshrc` and `.p10k.zsh` from this repo to your `$HOME` directory.
+- The included `.p10k.zsh` provides a great default prompt. You can customize it further by running `p10k configure`.
 
 ---
 
