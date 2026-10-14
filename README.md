@@ -1,4 +1,4 @@
-# HyperZsh
+# HyperZshrc
 
 A blazing-fast, developer-centric terminal with Oh My Zsh, Powerlevel10k, Nerd Font, fzf, and the best Zsh plugins—fully compatible across macOS, Ubuntu/Debian, Arch/Manjaro, and WSL2.
 
