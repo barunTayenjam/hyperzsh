@@ -30,7 +30,7 @@ git clone https://github.com/changyuheng/zsh-interactive-cd.git \
   ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-interactive-cd
 ```
 **Usage:**  
-Use `icd` to get interactive directory navigation in your terminal.
+Type `cd` and press <kbd>Tab</kbd> (or `cd **` then <kbd>Tab</kbd>) for fzf-style interactive directory navigation. Requires `fzf`.
 
 ### 5. zsh-autocomplete
 ```bash
@@ -38,7 +38,7 @@ git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git \
   ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 ```
 **Placement:**  
-Always place zsh-autocomplete after zsh-syntax-highlighting in the plugins array for compatibility.
+Place zsh-autocomplete *before* zsh-autosuggestions and zsh-syntax-highlighting. Per its README, it also requires that you do not call `compinit` yourself — `oh-my-zsh.sh` handles it.
 
 ### 6. sudo, history, fzf, direnv
 All are included by default in Oh My Zsh or install separately via your system package manager.
@@ -100,14 +100,14 @@ Check for new CLI tool/plugin versions every few weeks.
 ```text
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting     # Always near/at end
   sudo
   history
   fzf
   direnv
   zsh-interactive-cd
-  zsh-autocomplete            # Prefer at the end
+  zsh-autocomplete            # Before autosuggestions & syntax-highlighting
+  zsh-autosuggestions
+  zsh-syntax-highlighting     # Always last
 )
 ```
 

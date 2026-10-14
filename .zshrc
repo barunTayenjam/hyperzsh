@@ -11,28 +11,29 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
   sudo
   history
   fzf
   direnv
   zsh-interactive-cd
   zsh-autocomplete
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
-source "$ZSH/oh-my-zsh.sh"
 
-# ─── Zsh Native Completion/Completions Bootstrapping ─────────────────────
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# ─── Homebrew/Linuxbrew Zsh completions (optional, cross-platform) ──────
+# ─── Homebrew/Linuxbrew Zsh completions (before compinit so they register) ─
 if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
+
+source "$ZSH/oh-my-zsh.sh"
+
+# ─── Zsh completion styles (compinit runs inside oh-my-zsh.sh) ───────────
+# Do NOT call compinit here: oh-my-zsh.sh already does it, and zsh-autocomplete
+# requires no extra compinit calls.
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # ─── Environment Variables ───────────────────────────────────────────────
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
@@ -55,9 +56,11 @@ fi
 
 if command -v bat &>/dev/null; then
   alias cat="bat --style=plain"
-  export BAT_STYLE="plain"
-  export BAT_PAGER="less -RF"
+elif command -v batcat &>/dev/null; then
+  alias cat="batcat --style=plain"
 fi
+export BAT_STYLE="plain"
+export BAT_PAGER="less -RF"
 
 if command -v dust &>/dev/null; then
   alias du="dust"
@@ -79,9 +82,21 @@ alias gl="git log --graph --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Crese
 
 # ─── FZF: Fuzzy Finder config ────────────────────────────────────────────
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'bat --color=always {}'"
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+if command -v fd &>/dev/null; then
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+elif command -v fdfind &>/dev/null; then
+  # Ubuntu/Debian: fd-find installs as fdfind
+  export FZF_DEFAULT_COMMAND="fdfind --type f --hidden --follow --exclude .git"
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+# Preview only for file search: a global preview breaks Ctrl-R (bat would read stdin)
+if command -v bat &>/dev/null; then
+  export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}'"
+elif command -v batcat &>/dev/null; then
+  export FZF_CTRL_T_OPTS="--preview 'batcat --color=always {}'"
+fi
 
 # ─── History, Zsh options ───────────────────────────────────────────────
 export HISTFILE="$HOME/.zsh_history"

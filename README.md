@@ -73,6 +73,7 @@ brew install fzf direnv eza bat dust duf btm fd neovim neofetch
 ```bash
 sudo apt install fzf direnv exa bat fd-find duf btop neovim neofetch
 # Optional: Install 'eza', 'dust' via cargo (Rust) if not in repo
+# Note: On Ubuntu/Debian, 'bat' and 'fd' install as 'batcat'/'fdfind' — the .zshrc handles this automatically.
 ```
 **Arch/Manjaro:**
 ```bash
@@ -82,7 +83,6 @@ sudo pacman -S fzf direnv eza bat dust duf bottom fd neovim neofetch
 ### 6. Install Nerd Font (MesloLGS)
 **macOS (Homebrew):**
 ```bash
-brew tap homebrew/cask-fonts
 brew install --cask font-meslo-lg-nerd-font
 ```
 Set "MesloLGS NF" as your terminal font in Preferences.
@@ -106,7 +106,7 @@ Or use your AUR helper.
 
 ### 7. Configure your Terminal
 - Copy `.zshrc` from this repo to your `$HOME` directory.
-- Optionally copy `.p10k.zsh.example` to `~/.p10k.zsh`, and run `p10k configure`.
+- Run `p10k configure` to generate your `~/.p10k.zsh`.
 
 ---
 
