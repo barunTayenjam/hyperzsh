@@ -43,6 +43,17 @@ Oh My Zsh · Powerlevel10k · fzf · zsh-autocomplete · **built-in AI command h
 
 ## 🚀 Installation
 
+**One command:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/barunTayenjam/hyperzshrc/main/install.sh | zsh
+```
+
+Idempotent & non-destructive — re-run anytime. Installs Oh My Zsh, Powerlevel10k, all plugins, and system tools it can (via brew/apt/pacman), backs up your existing `~/.zshrc`, then points you at the 3 finishing steps (font, `exec zsh`, `p10k configure`).
+
+<details>
+<summary>Manual step-by-step install</summary>
+
 ### 1. Prerequisites
 
 ```bash
@@ -119,6 +130,8 @@ source ~/.zshrc
 p10k configure   # walk through the prompt wizard (re-run anytime)
 exec zsh         # fresh shell, instant prompt kicks in
 ```
+
+</details>
 
 ## 🤖 AI command helper
 
