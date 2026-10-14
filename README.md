@@ -2,7 +2,7 @@
 
 A blazing-fast, developer-centric terminal with Oh My Zsh, Powerlevel10k, Nerd Font, fzf, and the best Zsh plugins—fully compatible across macOS, Ubuntu/Debian, Arch/Manjaro, and WSL2.
 
-**GitHub:** [git@github.com:barunTayenjam/hyperzsh.git](https://github.com/barunTayenjam/hyperzsh)  
+**GitHub:** [git@github.com:barunTayenjam/hyperzshrc.git](https://github.com/barunTayenjam/hyperzshrc)  
 **Author:** [barunTayenjam](https://github.com/barunTayenjam)
 
 ## Features
@@ -127,13 +127,13 @@ cp ~/.zshrc ~/.zshrc.backup.$(date +'%Y%m%d%H%M%S')
 Download the new .zshrc from GitHub:
 
 ```bash
-curl -o ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzsh/main/.zshrc
+curl -o ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzshrc/main/.zshrc
 ```
 
 Tip: To use wget instead, try
 
 ```bash
-wget -O ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzsh/main/.zshrc
+wget -O ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzshrc/main/.zshrc
 ```
 
 Verify the update:
