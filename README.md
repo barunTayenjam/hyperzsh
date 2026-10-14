@@ -1,181 +1,159 @@
-# HyperZshrc
+<div align="center">
 
-A blazing-fast, developer-centric terminal with Oh My Zsh, Powerlevel10k, Nerd Font, fzf, and the best Zsh plugins—fully compatible across macOS, Ubuntu/Debian, Arch/Manjaro, and WSL2.
+# ⚡ HyperZshrc
 
-**GitHub:** [git@github.com:barunTayenjam/hyperzshrc.git](https://github.com/barunTayenjam/hyperzshrc)  
-**Author:** [barunTayenjam](https://github.com/barunTayenjam)
+**A blazing-fast, developer-centric Zsh setup — one `.zshrc` that works everywhere.**
 
-## Features
-- **Powerlevel10k**: Ultra-fast, beautiful, and customizable prompt.
-- **Developer-AI Productivity**: Contextual autocompletion for Git, modern CLI tools, and rich plugin support.
-- **Plugins**: git, autosuggestions, syntax highlighting, fzf, direnv, and AI-powered autocomplete.
-- Lightning-fast fuzzy search and context-aware autocompletion.
-- **Cross-platform**: Clean, tested, and error-free setup on macOS, Linux, WSL2—single config, works everywhere.
+[![Zsh](https://img.shields.io/badge/zsh-5.8%2B-4EBAFF?logo=zsh&logoColor=white)](https://www.zsh.org/)
+[![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Ubuntu%20%7C%20Arch%20%7C%20WSL2-lightgrey)](#-installation)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-## Installation
+Oh My Zsh · Powerlevel10k · fzf · zsh-autocomplete · **built-in AI command helper**
 
-### 1. Install Zsh and Git
-**macOS:**
+</div>
+
+---
+
+## ✨ What's inside
+
+| | |
+|---|---|
+| 🚀 **Turbo prompt** | Powerlevel10k with instant prompt — shell feels instant |
+| 🧠 **Smart completion** | zsh-autocomplete type-ahead + autosuggestions + syntax highlighting |
+| 🎯 **Fuzzy everything** | fzf with Catppuccin colors: files (Ctrl-T), dirs (Alt-C), history (Ctrl-R) |
+| 🤖 **AI command helper** | Press <kbd>Alt+a</kbd> — AI completes your command line. No keys in this repo |
+| 🛠 **Modern tools, aliased** | `eza` `bat` `dust` `duf` `bottom` `fd` — with graceful fallbacks (Ubuntu's `batcat`/`fdfind` handled) |
+| 🌍 **Cross-platform** | Same config on macOS, Ubuntu/Debian, Arch/Manjaro, WSL2 |
+| 🔒 **SSH-aware** | No banner spam on remote sessions |
+| 🧩 **Machine overrides** | Personal bits live in `~/.zshrc.local` — never in git |
+
+## ⌨️ Shortcuts
+
+| Key / command | What it does |
+|---|---|
+| <kbd>Alt</kbd>+<kbd>a</kbd> | AI completes the current command line (review, then Enter) |
+| `ai "list docker containers"` | Print an AI-suggested command |
+| <kbd>Ctrl</kbd>+<kbd>T</kbd> | Fuzzy-find files with preview |
+| <kbd>Alt</kbd>+<kbd>C</kbd> | Fuzzy-jump into a directory |
+| <kbd>Ctrl</kbd>+<kbd>R</kbd> | Fuzzy history search |
+| <kbd>Tab</kbd> | Type-ahead completion menu |
+| `cd **` + <kbd>Tab</kbd> | Interactive directory navigation |
+| `gs` `gd` `gc` `gp` `gl` | git status / diff / commit / push / log |
+| `ll` `lt` `lta` | ls long / tree / tree-all (via eza) |
+
+## 🚀 Installation
+
+### 1. Prerequisites
+
 ```bash
+# macOS
 brew install zsh git
-```
-**Ubuntu/Debian/WSL2:**
-```bash
-sudo apt update
-sudo apt install zsh git
-```
-**Arch/Manjaro:**
-```bash
+
+# Ubuntu / Debian / WSL2
+sudo apt update && sudo apt install zsh git
+
+# Arch / Manjaro
 sudo pacman -Syu zsh git
 ```
 
-### 2. Install Oh My Zsh
+### 2. Oh My Zsh + Powerlevel10k
+
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
 
-### 3. Install Powerlevel10k
-```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
   ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
-### 4. Install Plugins
-See [Plugin Setup, Troubleshooting & Advanced Notes](./plugins_setup.md) for details and troubleshooting.
+### 3. Plugins
 
-- **zsh-autosuggestions**
-  ```bash
-  git clone https://github.com/zsh-users/zsh-autosuggestions \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  ```
-- **zsh-syntax-highlighting**
-  ```bash
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  ```
-- **zsh-interactive-cd**
-  ```bash
-  git clone https://github.com/changyuheng/zsh-interactive-cd.git \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-interactive-cd
-  ```
-- **zsh-autocomplete**
-  ```bash
-  git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
-  ```
+```bash
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 
-### 5. Install Modern CLI Tools
-**macOS (Homebrew):**
-```bash
-brew install fzf direnv eza bat dust duf btm fd neovim neofetch
-```
-**Ubuntu/Debian/WSL2:**
-```bash
-sudo apt install fzf direnv exa bat fd-find duf btop neovim neofetch
-# Optional: Install 'eza', 'dust' via cargo (Rust) if not in repo
-# Note: On Ubuntu/Debian, 'bat' and 'fd' install as 'batcat'/'fdfind' — the .zshrc handles this automatically.
-```
-**Arch/Manjaro:**
-```bash
-sudo pacman -S fzf direnv eza bat dust duf bottom fd neovim neofetch
+git clone https://github.com/zsh-users/zsh-autosuggestions     $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/changyuheng/zsh-interactive-cd    $ZSH_CUSTOM/plugins/zsh-interactive-cd
+git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete $ZSH_CUSTOM/plugins/zsh-autocomplete
 ```
 
-### 6. Install Nerd Font (MesloLGS)
-**macOS (Homebrew):**
+Details & troubleshooting → [plugins_setup.md](plugins_setup.md)
+
+### 4. Modern CLI tools
+
 ```bash
+# macOS
+brew install fzf direnv eza bat dust duf btm fd neovim
+
+# Ubuntu / Debian / WSL2  (bat→batcat, fd→fdfind — handled automatically)
+sudo apt install fzf direnv bat fd-find duf btop neovim
+cargo install eza dust   # if not in your repos
+
+# Arch / Manjaro
+sudo pacman -S fzf direnv eza bat dust duf bottom fd neovim
+```
+
+### 5. Nerd Font (required for prompt icons)
+
+```bash
+# macOS
 brew install --cask font-meslo-lg-nerd-font
-```
-Set "MesloLGS NF" as your terminal font in Preferences.
 
-**Linux/WSL2:**
-- Download from [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- Unzip and copy `.ttf` files to `~/.local/share/fonts/`
-- Run `fc-cache -fv`
-- Set terminal font to "MesloLGS NF" in terminal emulator preferences.
-
-**Arch Linux:**
-```bash
+# Arch / Manjaro
 sudo pacman -S nerd-fonts-meslo
 ```
-Or use your AUR helper.
 
-**Windows (WSL2):**
-- Download the zip from [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
-- Install all `.ttf` files.
-- Set your Windows Terminal Profile to "MesloLGS NF".
+Linux/WSL2: grab [MesloLGS NF](https://www.nerdfonts.com/font-downloads), drop the `.ttf`s in `~/.local/share/fonts/`, run `fc-cache -fv`, and select the font in your terminal.
 
-### 7. Configure your Terminal
-- Copy `.zshrc` from this repo to your `$HOME` directory.
-- Run `p10k configure` to generate your `~/.p10k.zsh`.
-
----
-
-## 📥 How to Replace Your .zshrc With the Version From This Repo (e.g., on a Server/WSL)
-
-SSH into your remote machine (skip this step if you’re working locally):
+### 6. Grab the config
 
 ```bash
-ssh youruser@your-remote-server
-```
-
-Back up your existing .zshrc:
-
-```bash
+# backup, install, reload
 cp ~/.zshrc ~/.zshrc.backup.$(date +'%Y%m%d%H%M%S')
-```
-
-Download the new .zshrc from GitHub:
-
-```bash
 curl -o ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzshrc/main/.zshrc
-```
-
-Tip: To use wget instead, try
-
-```bash
-wget -O ~/.zshrc https://raw.githubusercontent.com/barunTayenjam/hyperzshrc/main/.zshrc
-```
-
-Verify the update:
-
-```bash
-head -20 ~/.zshrc
-```
-
-Apply changes (reload config immediately):
-
-```bash
 source ~/.zshrc
 ```
 
-To restore your previous settings:
-If needed, simply run
+### 7. First-run polish
 
 ```bash
-cp ~/.zshrc.backup.YYYYMMDDHHMMSS ~/.zshrc
-source ~/.zshrc
+p10k configure   # walk through the prompt wizard (re-run anytime)
+exec zsh         # fresh shell, instant prompt kicks in
 ```
-(change the timestamp as appropriate).
 
----
+## 🤖 AI command helper
 
-Source your shell:
+Works out of the box if your environment already provides an OpenAI-compatible backend:
+
 ```bash
-source ~/.zshrc
+# put credentials in ~/.secrets (never in git)
+export ANTHROPIC_BASE_URL="https://your-endpoint/v1"
+export ANTHROPIC_AUTH_TOKEN="sk-..."
+export AI_CLI_MODEL="sonet-4"          # optional override
 ```
-Optionally, run Powerlevel10k's setup wizard:
-```bash
-p10k configure
-```
 
-## Tips & Troubleshooting
-- Update plugins: Pull new commits from plugin repositories regularly.
-- For unknown commands/tools: Install with your package manager or from the official repo.
-- WSL users: All *nix instructions apply; set fonts via Windows Terminal settings.
+- <kbd>Alt</kbd>+<kbd>a</kbd> → replaces your buffer with one suggested command (review before running!)
+- `ai "..."` → prints the suggestion
 
-See [Plugin Setup, Troubleshooting & Advanced Notes](./plugins_setup.md) for plugin-specific help.
+**No keys live in this repository** — the helper reads `~/.secrets` at runtime only.
 
-## License
-MIT.
+## ⚙️ Configuration & overrides
 
-Credit: Community plugin developers and Powerlevel10k contributors.
+| File | Role |
+|---|---|
+| [`.zshrc`](.zshrc) | The whole setup — versioned here |
+| `~/.zshrc.local` | Your machine-specific PATHs, aliases, secrets — sourced last, not in git |
+| `~/.p10k.zsh` | Prompt style — generate with `p10k configure` |
+| [`plugins_setup.md`](plugins_setup.md) | Per-plugin details & troubleshooting |
+
+## 🔧 Troubleshooting
+
+- **Prompt icons broken?** → Nerd Font not active — check your terminal font settings.
+- **Plugin not loading?** → `ls ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins` and match it against `plugins=(...)`.
+- **Completion feels off?** → never add your own `compinit` call — `oh-my-zsh.sh` handles it (zsh-autocomplete requirement).
+- **Update everything:** `omz update`, then `git -C ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/<name> pull`.
+
+More: [plugins_setup.md](plugins_setup.md)
+
+## 📄 License
+
+[MIT](LICENSE) — credit to [Powerlevel10k](https://github.com/romkatv/powerlevel10k), [Oh My Zsh](https://ohmyz.sh/), and the plugin authors.
